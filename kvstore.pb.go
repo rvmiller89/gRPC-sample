@@ -76,6 +76,53 @@ func (x *GetRequest) GetKey() string {
 	return ""
 }
 
+type GetBulkRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Keys []string `protobuf:"bytes,1,rep,name=keys,proto3" json:"keys,omitempty"`
+}
+
+func (x *GetBulkRequest) Reset() {
+	*x = GetBulkRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_kvstore_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetBulkRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetBulkRequest) ProtoMessage() {}
+
+func (x *GetBulkRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_kvstore_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetBulkRequest.ProtoReflect.Descriptor instead.
+func (*GetBulkRequest) Descriptor() ([]byte, []int) {
+	return file_kvstore_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *GetBulkRequest) GetKeys() []string {
+	if x != nil {
+		return x.Keys
+	}
+	return nil
+}
+
 type GetResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -88,7 +135,7 @@ type GetResponse struct {
 func (x *GetResponse) Reset() {
 	*x = GetResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_kvstore_proto_msgTypes[1]
+		mi := &file_kvstore_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -101,7 +148,7 @@ func (x *GetResponse) String() string {
 func (*GetResponse) ProtoMessage() {}
 
 func (x *GetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_kvstore_proto_msgTypes[1]
+	mi := &file_kvstore_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -114,7 +161,7 @@ func (x *GetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetResponse.ProtoReflect.Descriptor instead.
 func (*GetResponse) Descriptor() ([]byte, []int) {
-	return file_kvstore_proto_rawDescGZIP(), []int{1}
+	return file_kvstore_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *GetResponse) GetKey() string {
@@ -143,7 +190,7 @@ type SetRequest struct {
 func (x *SetRequest) Reset() {
 	*x = SetRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_kvstore_proto_msgTypes[2]
+		mi := &file_kvstore_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -156,7 +203,7 @@ func (x *SetRequest) String() string {
 func (*SetRequest) ProtoMessage() {}
 
 func (x *SetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_kvstore_proto_msgTypes[2]
+	mi := &file_kvstore_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -169,7 +216,7 @@ func (x *SetRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetRequest.ProtoReflect.Descriptor instead.
 func (*SetRequest) Descriptor() ([]byte, []int) {
-	return file_kvstore_proto_rawDescGZIP(), []int{2}
+	return file_kvstore_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *SetRequest) GetKey() string {
@@ -195,7 +242,7 @@ type SetResponse struct {
 func (x *SetResponse) Reset() {
 	*x = SetResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_kvstore_proto_msgTypes[3]
+		mi := &file_kvstore_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -208,7 +255,7 @@ func (x *SetResponse) String() string {
 func (*SetResponse) ProtoMessage() {}
 
 func (x *SetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_kvstore_proto_msgTypes[3]
+	mi := &file_kvstore_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -221,7 +268,7 @@ func (x *SetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetResponse.ProtoReflect.Descriptor instead.
 func (*SetResponse) Descriptor() ([]byte, []int) {
-	return file_kvstore_proto_rawDescGZIP(), []int{3}
+	return file_kvstore_proto_rawDescGZIP(), []int{4}
 }
 
 var File_kvstore_proto protoreflect.FileDescriptor
@@ -230,25 +277,35 @@ var file_kvstore_proto_rawDesc = []byte{
 	0x0a, 0x0d, 0x6b, 0x76, 0x73, 0x74, 0x6f, 0x72, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12,
 	0x07, 0x6b, 0x76, 0x73, 0x74, 0x6f, 0x72, 0x65, 0x22, 0x1e, 0x0a, 0x0a, 0x47, 0x65, 0x74, 0x52,
 	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x22, 0x35, 0x0a, 0x0b, 0x47, 0x65, 0x74, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c,
-	0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x22,
-	0x34, 0x0a, 0x0a, 0x53, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x10, 0x0a,
+	0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x22, 0x24, 0x0a, 0x0e, 0x47, 0x65, 0x74, 0x42,
+	0x75, 0x6c, 0x6b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x6b, 0x65,
+	0x79, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x09, 0x52, 0x04, 0x6b, 0x65, 0x79, 0x73, 0x22, 0x35,
+	0x0a, 0x0b, 0x47, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x10, 0x0a,
 	0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12,
 	0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x05,
-	0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x0d, 0x0a, 0x0b, 0x53, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x32, 0x71, 0x0a, 0x07, 0x4b, 0x56, 0x53, 0x74, 0x6f, 0x72, 0x65, 0x12,
-	0x32, 0x0a, 0x03, 0x47, 0x65, 0x74, 0x12, 0x13, 0x2e, 0x6b, 0x76, 0x73, 0x74, 0x6f, 0x72, 0x65,
-	0x2e, 0x47, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x6b, 0x76,
-	0x73, 0x74, 0x6f, 0x72, 0x65, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x22, 0x00, 0x12, 0x32, 0x0a, 0x03, 0x53, 0x65, 0x74, 0x12, 0x13, 0x2e, 0x6b, 0x76, 0x73,
-	0x74, 0x6f, 0x72, 0x65, 0x2e, 0x53, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
-	0x14, 0x2e, 0x6b, 0x76, 0x73, 0x74, 0x6f, 0x72, 0x65, 0x2e, 0x53, 0x65, 0x74, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x42, 0x2f, 0x5a, 0x2d, 0x67, 0x69, 0x74, 0x68, 0x75,
-	0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x72, 0x76, 0x6d, 0x69, 0x6c, 0x6c, 0x65, 0x72, 0x38, 0x39,
-	0x2f, 0x67, 0x52, 0x50, 0x43, 0x2d, 0x73, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x3b, 0x67, 0x52, 0x50,
-	0x43, 0x5f, 0x73, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x34, 0x0a, 0x0a, 0x53, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x05, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x0d, 0x0a, 0x0b, 0x53,
+	0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32, 0xe9, 0x01, 0x0a, 0x07, 0x4b,
+	0x56, 0x53, 0x74, 0x6f, 0x72, 0x65, 0x12, 0x32, 0x0a, 0x03, 0x47, 0x65, 0x74, 0x12, 0x13, 0x2e,
+	0x6b, 0x76, 0x73, 0x74, 0x6f, 0x72, 0x65, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x14, 0x2e, 0x6b, 0x76, 0x73, 0x74, 0x6f, 0x72, 0x65, 0x2e, 0x47, 0x65, 0x74,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x32, 0x0a, 0x03, 0x53, 0x65,
+	0x74, 0x12, 0x13, 0x2e, 0x6b, 0x76, 0x73, 0x74, 0x6f, 0x72, 0x65, 0x2e, 0x53, 0x65, 0x74, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x6b, 0x76, 0x73, 0x74, 0x6f, 0x72, 0x65,
+	0x2e, 0x53, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x3c,
+	0x0a, 0x07, 0x47, 0x65, 0x74, 0x42, 0x75, 0x6c, 0x6b, 0x12, 0x17, 0x2e, 0x6b, 0x76, 0x73, 0x74,
+	0x6f, 0x72, 0x65, 0x2e, 0x47, 0x65, 0x74, 0x42, 0x75, 0x6c, 0x6b, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x14, 0x2e, 0x6b, 0x76, 0x73, 0x74, 0x6f, 0x72, 0x65, 0x2e, 0x47, 0x65, 0x74,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x30, 0x01, 0x12, 0x38, 0x0a, 0x07,
+	0x53, 0x65, 0x74, 0x42, 0x75, 0x6c, 0x6b, 0x12, 0x13, 0x2e, 0x6b, 0x76, 0x73, 0x74, 0x6f, 0x72,
+	0x65, 0x2e, 0x53, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x6b,
+	0x76, 0x73, 0x74, 0x6f, 0x72, 0x65, 0x2e, 0x53, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x22, 0x00, 0x28, 0x01, 0x42, 0x2f, 0x5a, 0x2d, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62,
+	0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x72, 0x76, 0x6d, 0x69, 0x6c, 0x6c, 0x65, 0x72, 0x38, 0x39, 0x2f,
+	0x67, 0x52, 0x50, 0x43, 0x2d, 0x73, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x3b, 0x67, 0x52, 0x50, 0x43,
+	0x5f, 0x73, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -263,20 +320,25 @@ func file_kvstore_proto_rawDescGZIP() []byte {
 	return file_kvstore_proto_rawDescData
 }
 
-var file_kvstore_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_kvstore_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_kvstore_proto_goTypes = []interface{}{
-	(*GetRequest)(nil),  // 0: kvstore.GetRequest
-	(*GetResponse)(nil), // 1: kvstore.GetResponse
-	(*SetRequest)(nil),  // 2: kvstore.SetRequest
-	(*SetResponse)(nil), // 3: kvstore.SetResponse
+	(*GetRequest)(nil),     // 0: kvstore.GetRequest
+	(*GetBulkRequest)(nil), // 1: kvstore.GetBulkRequest
+	(*GetResponse)(nil),    // 2: kvstore.GetResponse
+	(*SetRequest)(nil),     // 3: kvstore.SetRequest
+	(*SetResponse)(nil),    // 4: kvstore.SetResponse
 }
 var file_kvstore_proto_depIdxs = []int32{
 	0, // 0: kvstore.KVStore.Get:input_type -> kvstore.GetRequest
-	2, // 1: kvstore.KVStore.Set:input_type -> kvstore.SetRequest
-	1, // 2: kvstore.KVStore.Get:output_type -> kvstore.GetResponse
-	3, // 3: kvstore.KVStore.Set:output_type -> kvstore.SetResponse
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
+	3, // 1: kvstore.KVStore.Set:input_type -> kvstore.SetRequest
+	1, // 2: kvstore.KVStore.GetBulk:input_type -> kvstore.GetBulkRequest
+	3, // 3: kvstore.KVStore.SetBulk:input_type -> kvstore.SetRequest
+	2, // 4: kvstore.KVStore.Get:output_type -> kvstore.GetResponse
+	4, // 5: kvstore.KVStore.Set:output_type -> kvstore.SetResponse
+	2, // 6: kvstore.KVStore.GetBulk:output_type -> kvstore.GetResponse
+	4, // 7: kvstore.KVStore.SetBulk:output_type -> kvstore.SetResponse
+	4, // [4:8] is the sub-list for method output_type
+	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -301,7 +363,7 @@ func file_kvstore_proto_init() {
 			}
 		}
 		file_kvstore_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetResponse); i {
+			switch v := v.(*GetBulkRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -313,7 +375,7 @@ func file_kvstore_proto_init() {
 			}
 		}
 		file_kvstore_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*SetRequest); i {
+			switch v := v.(*GetResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -325,6 +387,18 @@ func file_kvstore_proto_init() {
 			}
 		}
 		file_kvstore_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SetRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_kvstore_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SetResponse); i {
 			case 0:
 				return &v.state
@@ -343,7 +417,7 @@ func file_kvstore_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_kvstore_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -371,6 +445,8 @@ const _ = grpc.SupportPackageIsVersion6
 type KVStoreClient interface {
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
 	Set(ctx context.Context, in *SetRequest, opts ...grpc.CallOption) (*SetResponse, error)
+	GetBulk(ctx context.Context, in *GetBulkRequest, opts ...grpc.CallOption) (KVStore_GetBulkClient, error)
+	SetBulk(ctx context.Context, opts ...grpc.CallOption) (KVStore_SetBulkClient, error)
 }
 
 type kVStoreClient struct {
@@ -399,10 +475,78 @@ func (c *kVStoreClient) Set(ctx context.Context, in *SetRequest, opts ...grpc.Ca
 	return out, nil
 }
 
+func (c *kVStoreClient) GetBulk(ctx context.Context, in *GetBulkRequest, opts ...grpc.CallOption) (KVStore_GetBulkClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_KVStore_serviceDesc.Streams[0], "/kvstore.KVStore/GetBulk", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &kVStoreGetBulkClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type KVStore_GetBulkClient interface {
+	Recv() (*GetResponse, error)
+	grpc.ClientStream
+}
+
+type kVStoreGetBulkClient struct {
+	grpc.ClientStream
+}
+
+func (x *kVStoreGetBulkClient) Recv() (*GetResponse, error) {
+	m := new(GetResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *kVStoreClient) SetBulk(ctx context.Context, opts ...grpc.CallOption) (KVStore_SetBulkClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_KVStore_serviceDesc.Streams[1], "/kvstore.KVStore/SetBulk", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &kVStoreSetBulkClient{stream}
+	return x, nil
+}
+
+type KVStore_SetBulkClient interface {
+	Send(*SetRequest) error
+	CloseAndRecv() (*SetResponse, error)
+	grpc.ClientStream
+}
+
+type kVStoreSetBulkClient struct {
+	grpc.ClientStream
+}
+
+func (x *kVStoreSetBulkClient) Send(m *SetRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *kVStoreSetBulkClient) CloseAndRecv() (*SetResponse, error) {
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	m := new(SetResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // KVStoreServer is the server API for KVStore service.
 type KVStoreServer interface {
 	Get(context.Context, *GetRequest) (*GetResponse, error)
 	Set(context.Context, *SetRequest) (*SetResponse, error)
+	GetBulk(*GetBulkRequest, KVStore_GetBulkServer) error
+	SetBulk(KVStore_SetBulkServer) error
 }
 
 // UnimplementedKVStoreServer can be embedded to have forward compatible implementations.
@@ -414,6 +558,12 @@ func (*UnimplementedKVStoreServer) Get(context.Context, *GetRequest) (*GetRespon
 }
 func (*UnimplementedKVStoreServer) Set(context.Context, *SetRequest) (*SetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Set not implemented")
+}
+func (*UnimplementedKVStoreServer) GetBulk(*GetBulkRequest, KVStore_GetBulkServer) error {
+	return status.Errorf(codes.Unimplemented, "method GetBulk not implemented")
+}
+func (*UnimplementedKVStoreServer) SetBulk(KVStore_SetBulkServer) error {
+	return status.Errorf(codes.Unimplemented, "method SetBulk not implemented")
 }
 
 func RegisterKVStoreServer(s *grpc.Server, srv KVStoreServer) {
@@ -456,6 +606,53 @@ func _KVStore_Set_Handler(srv interface{}, ctx context.Context, dec func(interfa
 	return interceptor(ctx, in, info, handler)
 }
 
+func _KVStore_GetBulk_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(GetBulkRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(KVStoreServer).GetBulk(m, &kVStoreGetBulkServer{stream})
+}
+
+type KVStore_GetBulkServer interface {
+	Send(*GetResponse) error
+	grpc.ServerStream
+}
+
+type kVStoreGetBulkServer struct {
+	grpc.ServerStream
+}
+
+func (x *kVStoreGetBulkServer) Send(m *GetResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func _KVStore_SetBulk_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(KVStoreServer).SetBulk(&kVStoreSetBulkServer{stream})
+}
+
+type KVStore_SetBulkServer interface {
+	SendAndClose(*SetResponse) error
+	Recv() (*SetRequest, error)
+	grpc.ServerStream
+}
+
+type kVStoreSetBulkServer struct {
+	grpc.ServerStream
+}
+
+func (x *kVStoreSetBulkServer) SendAndClose(m *SetResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *kVStoreSetBulkServer) Recv() (*SetRequest, error) {
+	m := new(SetRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 var _KVStore_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "kvstore.KVStore",
 	HandlerType: (*KVStoreServer)(nil),
@@ -469,6 +666,17 @@ var _KVStore_serviceDesc = grpc.ServiceDesc{
 			Handler:    _KVStore_Set_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "GetBulk",
+			Handler:       _KVStore_GetBulk_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "SetBulk",
+			Handler:       _KVStore_SetBulk_Handler,
+			ClientStreams: true,
+		},
+	},
 	Metadata: "kvstore.proto",
 }

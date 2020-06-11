@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"errors"
+	"io"
 	"log"
 	"net"
 	"sync"
@@ -39,6 +40,36 @@ func (s *server) Set(ctx context.Context,
 	s.m[req.GetKey()] = int(req.GetValue())
 	s.mutex.Unlock()
 	return &pb.SetResponse{}, nil
+}
+
+func (s *server) GetBulk(req *pb.GetBulkRequest,
+	stream pb.KVStore_GetBulkServer) error {
+	keys := req.GetKeys()
+	for _, key := range keys {
+		s.mutex.Lock()
+		val, exists := s.m[key]
+		s.mutex.Unlock()
+		if !exists {
+			return errors.New("Missing key: " + key)
+		}
+		stream.Send(&pb.GetResponse{Key: key, Value: int32(val)})
+	}
+	return nil
+}
+
+func (s *server) SetBulk(stream pb.KVStore_SetBulkServer) error {
+	for {
+		req, err := stream.Recv()
+		if err == io.EOF {
+			return stream.SendAndClose(&pb.SetResponse{})
+		}
+		if err != nil {
+			return err
+		}
+		s.mutex.Lock()
+		s.m[req.GetKey()] = int(req.GetValue())
+		s.mutex.Unlock()
+	}
 }
 
 func main() {

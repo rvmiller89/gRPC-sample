@@ -7,10 +7,16 @@ package kvstore;
 service KVStore {
     rpc Get(GetRequest) returns (GetResponse) {}
     rpc Set(SetRequest) returns (SetResponse) {}
+    rpc GetBulk(GetBulkRequest) returns (stream GetResponse) {}
+    rpc SetBulk(stream SetRequest) returns (SetResponse) {}
 }
 
 message GetRequest {
     string key = 1;
+}
+
+message GetBulkRequest {
+    repeated string keys = 1;
 }
 
 message GetResponse {

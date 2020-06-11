@@ -2,23 +2,34 @@
 
 ## Purpose
 
-This is a sample golang application to practice four types of gRPC communication:
-
-1. Unary RPC
-1. Server-to-client Streaming RPC
-1. Client-to-server Streaming RPC
-1. Bidirectional Streaming RPC
+This is a sample golang application to practice gRPC communication.
 
 There are two components, a client and a server, which emulate a [Memcached](https://memcached.org/)-style in-memory key-value store.
 
-After starting the server, you can start the client which serves as a REPL for Memcached-like commands:
+Although we only store integer values in this example, for the purpose of this exercise we can assume the value has a much larger memory footprint than the key, necessitating streaming values for bulk operations.
+
+This way we can exercise different styles of gRPC communication:
+
+1. Unary RPC (`GET`, `SET`)
+1. Server-to-client Streaming RPC (`GETBULK`)
+1. Client-to-server Streaming RPC (`SETBULK`)
+
+The following style is not yet exercised in this example:
+
+1. Bidirectional Streaming RPC
+
+## Usage
+
+After starting the server (see [Building](#building) section below), you can start the client which serves as a REPL for Memcached-like commands:
 
 ```sh
 Connected. Commands are:
 
-SET <key> <value>
-GET <key>
-EXIT
+        SET <key> <value>
+        GET <key>
+        GETBULK <key1>,<key2>,...
+        SETBULK <key1> <value1>,<key2> <value2>,...
+        EXIT
 
 > GET abc
 Error getting value rpc error: code = Unknown desc = Missing key
