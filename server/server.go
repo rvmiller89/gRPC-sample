@@ -5,27 +5,28 @@ import (
 	"errors"
 	"log"
 	"net"
+	"sync"
 
 	pb "github.com/rvmiller89/gRPC-sample"
 	"google.golang.org/grpc"
 )
 
-type server struct {
-	pb.UnimplementedKVStoreServer
-}
-
 const (
 	port = ":50051"
 )
 
-var (
-	m map[string]int
-)
+type server struct {
+	pb.UnimplementedKVStoreServer
+	m     map[string]int
+	mutex sync.Mutex
+}
 
 func (s *server) Get(ctx context.Context,
 	req *pb.GetRequest) (*pb.GetResponse, error) {
 	key := req.GetKey()
-	val, exists := m[key]
+	s.mutex.Lock()
+	val, exists := s.m[key]
+	defer s.mutex.Unlock()
 	if !exists {
 		return &pb.GetResponse{}, errors.New("Missing key")
 	}
@@ -34,22 +35,22 @@ func (s *server) Get(ctx context.Context,
 
 func (s *server) Set(ctx context.Context,
 	req *pb.SetRequest) (*pb.SetResponse, error) {
-	m[req.GetKey()] = int(req.GetValue())
+	s.mutex.Lock()
+	s.m[req.GetKey()] = int(req.GetValue())
+	s.mutex.Unlock()
 	return &pb.SetResponse{}, nil
 }
 
 func main() {
 	log.Println("Starting server on port", port)
-	m = make(map[string]int)
-
 	lis, err := net.Listen("tcp", port)
 	if err != nil {
 		log.Fatalln("Unable to listen to on port", port)
 	}
-
-	s := grpc.NewServer()
-	pb.RegisterKVStoreServer(s, &server{})
-	if err := s.Serve(lis); err != nil {
+	server := server{m: make(map[string]int)}
+	grpcServer := grpc.NewServer()
+	pb.RegisterKVStoreServer(grpcServer, &server)
+	if err := grpcServer.Serve(lis); err != nil {
 		log.Fatalln("Unable to start server on port", port)
 	}
 }
