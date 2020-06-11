@@ -1,7 +1,5 @@
 # gRPC-sample
 
-## Purpose
-
 This is a sample golang application to practice gRPC communication.
 
 There are two components, a client and a server, which emulate a [Memcached](https://memcached.org/)-style in-memory key-value store.
@@ -11,8 +9,8 @@ Although we only store integer values in this example, for the purpose of this e
 This way we can exercise different styles of gRPC communication:
 
 1. Unary RPC (`GET`, `SET`)
-1. Server-to-client Streaming RPC (`GETBULK`)
-1. Client-to-server Streaming RPC (`SETBULK`)
+2. Server-to-client Streaming RPC (`GETBULK`)
+3. Client-to-server Streaming RPC (`SETBULK`)
 
 The following style is not yet exercised in this example:
 
